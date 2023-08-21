@@ -20,7 +20,7 @@ function Reducer(state = initState, action) {
             })
         case "MINUS":
             return state.map(item => {
-                if (item.id === action.payload) {
+                if (item.id === action.payload && item.quantity>0) {
                     return {
                         ...item,
                         quantity: item.quantity - 1
