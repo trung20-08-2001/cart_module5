@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router";
 import "./style.css"
 import { addToCart } from "../service/productService";
+import { useSelector } from 'react-redux';
+import { plus } from '../redux/action';
+import store from '../redux/store';
 
 function Detail() {
     const { id } = useParams();
     const [product, setProduct] = useState({})
-
+    const cart = useSelector(state => state)
 
     useEffect(() => {
         fetch('https://dummyjson.com/products/' + id)
@@ -15,6 +18,15 @@ function Detail() {
             .then(data => setProduct(data))
             .catch(error => console.log(error))
     }, [])
+
+    const add = (data) => {
+        for (let i = 0; i < [...cart].length; i++) {
+            if (cart[i].id === data.id) {
+                return store.dispatch(plus(data.id))
+            }
+        }
+        addToCart(data)
+    }
 
 
     return (
@@ -66,7 +78,7 @@ function Detail() {
                                 
                                     <button
                                         className="btn btn-outline-primary btn-sm mt-2"
-                                        type="button" onClick={()=>addToCart(product)}
+                                        type="button" onClick={()=>add(product)}
                                     >
                                         Add to cart
                                     </button>
