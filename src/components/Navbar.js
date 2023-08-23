@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 
@@ -42,7 +42,7 @@ function Navbar() {
                         </form>
                     </div>
                 </nav>
-        
+                <Outlet/>
         </>
     );
 }

@@ -9,12 +9,14 @@ import Cart from "./components/Cart"
 const App = () => {
     return (
         <>
-            <Navbar></Navbar>
+
             <Routes>
-                <Route path='' element={<ProductList />}></Route>
-                <Route path='detail/:id' element={<Detail />}></Route>
-                <Route path='cart' element={<Cart/>}/>
-                {/* <Route path='*' element={<NotFound />}></Route> */}
+                <Route path='' element={<Navbar />}>
+                    <Route path='' index element={<ProductList />}></Route>
+                    <Route path='detail/:id' element={<Detail />}></Route>
+                    <Route path='cart' element={<Cart/>} />
+                </Route>
+                <Route path='*' element={<NotFound />}></Route>
             </Routes>
         </>
     )
