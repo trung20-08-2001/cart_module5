@@ -17,7 +17,7 @@ const App = () => {
                         <Route path='/detail/:id' element={<Detail />}></Route>
                         <Route path='/cart' element={<Cart />} />
                     </Route>
-                    <Route path='*' element={<NotFound />}></Route>
+        
                 </Routes>
             </HashRouter>
 
