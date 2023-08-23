@@ -16,7 +16,6 @@ const App = () => {
                         <Route path='/detail/:id' element={<Detail />}></Route>
                         <Route path='/cart' element={<Cart />} />
                     </Route>
-        
                 </Routes>
             </HashRouter>
 
