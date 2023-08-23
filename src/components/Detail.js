@@ -17,7 +17,7 @@ function Detail() {
             .then(res => res.json())
             .then(data => setProduct(data))
             .catch(error => console.log(error))
-    }, [])
+    }, [id])
 
     const add = (data) => {
         for (let i = 0; i < [...cart].length; i++) {
