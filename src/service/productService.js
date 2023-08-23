@@ -1,5 +1,5 @@
 import store from "../redux/store";
-import { addToCartAction, deleteProductAction, plus } from "../redux/action"
+import { addToCartAction, deleteProductAction } from "../redux/action"
 
 export const addToCart = (data) => {
     store.dispatch(addToCartAction({...data,quantity:1}))
