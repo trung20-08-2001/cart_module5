@@ -1,10 +1,23 @@
-import store from "../redux/store";
-import { addToCartAction, deleteProductAction } from "../redux/action"
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
 
-export const addToCart = (data) => {
-    store.dispatch(addToCartAction({...data,quantity:1}))
-}
+export const getAllProduct = createAsyncThunk(
+  'products/getAllProduct',
+  async () => {
+    try {
+      const res = await axios.get("https://dummyjson.com/products");
+      return res.data.products;
+    } catch (error) {
+      console.error("Error occurred:", error);
+      throw error;
+    }
+  }
+)
 
-export const deleteProduct=(id)=>{
-    store.dispatch(deleteProductAction(id))
-}
+
+// export const plusProduct = createAsyncThunk(
+//   "products/plusProduct",
+//   async = (data) => {
+//     return data
+//   }
+// )

@@ -9,16 +9,13 @@ import { HashRouter } from "react-router-dom";
 const App = () => {
     return (
         <>
-            <HashRouter>
-                <Routes>
-                    <Route path='/' element={<Navbar />}>
-                        <Route path='/' index element={<ProductList />}></Route>
-                        <Route path='/detail/:id' element={<Detail />}></Route>
-                        <Route path='/cart' element={<Cart />} />
-                    </Route>
-                </Routes>
-            </HashRouter>
-
+            <Routes>
+                <Route path='/' element={<Navbar />}>
+                    <Route path='/' index element={<ProductList />}></Route>
+                    <Route path='/detail/:index' element={<Detail />}></Route>
+                    <Route path='/cart' element={<Cart />} />
+                </Route>
+            </Routes>
         </>
     )
 }

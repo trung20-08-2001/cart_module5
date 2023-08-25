@@ -1,15 +1,15 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import "./style.css"
-import { deleteProduct } from "../service/productService";
-import { minus, plus } from "../redux/action";
-import store from '../redux/store';
+import { minus, plus,removeFromCart } from "../service/cartService";
 
-function Cart() {
-    const cart = useSelector(state => state)
+
+function Cart() { 
+    const cart=useSelector(state=>state.cart.cart)
+    const dispatch=useDispatch()
 
     return (
         <>
-            <table class="table table-striped">
+            <table className="table table-striped">
                 <thead>
                     <tr>
                         <th>Product Name</th>
@@ -19,14 +19,14 @@ function Cart() {
                     </tr>
                 </thead>
                 <tbody>
-                    {cart.map(item => {
-                        return (
-                            <tr>
+                    {cart.map((item,index) => {
+                        return   (
+                            <tr key={item.id}>
                                 <td>{item.title }</td>
                                 <td><img src={item.thumbnail} width={"200"} height={"100"} alt={item.title} /></td>
-                                <td><button className="btn btn-primary"  onClick={()=>store.dispatch(minus(item.id))}>-</button>&nbsp;&nbsp;{item.quantity}&nbsp;&nbsp;<button className=" btn btn-primary" onClick={()=>store.dispatch(plus(item.id))}>+</button></td>
+                                <td><button className="btn btn-primary"  onClick={()=>dispatch(minus(index))}>-</button>&nbsp;&nbsp;{item.quantity}&nbsp;&nbsp;<button className=" btn btn-primary" onClick={()=>dispatch(plus(index))}>+</button></td>
                                 <td>{item.price*item.quantity}$</td>
-                                <td><button className="btn btn-danger" onClick={()=>deleteProduct(item.id)}>Delete</button></td>
+                                <td><button className="btn btn-danger" onClick={()=>dispatch(removeFromCart(index))}>Delete</button></td>
                             </tr>
                         )
                     })}
